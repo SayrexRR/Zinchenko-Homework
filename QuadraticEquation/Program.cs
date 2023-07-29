@@ -13,7 +13,7 @@
 
             Equation equation = new(a, b, c);
 
-            string result = equation.GetQuadraticEquation();
+            string result = equation.GetResult();
 
             Console.WriteLine(result);
 

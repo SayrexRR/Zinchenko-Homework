@@ -12,11 +12,7 @@ namespace QuadraticEquation
         public double B { get; private set; }
         public double C { get; private set; }
 
-        public Equation()
-        {
-                
-        }
-
+       
         public Equation(double a, double b, double c)
         {
             A = a;
@@ -24,28 +20,31 @@ namespace QuadraticEquation
             C = c;
         }
 
-        public string GetQuadraticEquation()
+        public string GetResult()
         {
-            string x1, x2;
-            double discriminant = Math.Pow(B, 2) - 4 * A * C;
+            double x1, x2;
+            double discriminant = GetDiscriminant();
 
             if (discriminant > 0)
             {
-                x1 = ((-B + Math.Sqrt(discriminant)) / 2 * A).ToString();
-                x2 = ((-B - Math.Sqrt(discriminant)) / 2 * A).ToString();
+                x1 = (-B + Math.Sqrt(discriminant)) / 2 * A;
+                x2 = (-B - Math.Sqrt(discriminant)) / 2 * A;
 
                 return $"x1 = {x1}; x2 = {x2}";
             }
             else if (discriminant == 0)
             {
-                x1 = ((-B + Math.Sqrt(discriminant)) / 2 * A).ToString();
+                x1 = (-B + Math.Sqrt(discriminant)) / 2 * A;
 
                 return $"x = {x1}";
             }
-            else
-            {
-                return "Discriminant < 0. Equation has no real roots";
-            }
+
+            return "Discriminant < 0. Equation has no real roots";
+        }
+
+        double GetDiscriminant()
+        {
+            return Math.Pow(B, 2) - 4 * A * C;
         }
     }
 }
