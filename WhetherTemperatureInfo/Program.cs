@@ -6,20 +6,20 @@
         {
             Hydromecenter hydromecenter = new Hydromecenter();
 
-            hydromecenter.AddWeather(new TemperatureInfo("14.08.2023", 27));
-            hydromecenter.AddWeather(new TemperatureInfo("15.08.2023", 29));
-            hydromecenter.AddWeather(new TemperatureInfo("16.08.2023", 28));
-            hydromecenter.AddWeather(new TemperatureInfo("17.08.2023", 27));
-            hydromecenter.AddWeather(new TemperatureInfo("18.08.2023", 29));
-            hydromecenter.AddWeather(new TemperatureInfo("19.08.2023", 30));
-            hydromecenter.AddWeather(new TemperatureInfo("20.08.2023", 28));
+            hydromecenter.AddWeather(new TemperatureInfo(new DateTime(2023, 08, 14), 27));
+            hydromecenter.AddWeather(new TemperatureInfo(new DateTime(2023, 08, 15), 29));
+            hydromecenter.AddWeather(new TemperatureInfo(new DateTime(2023, 08, 16), 28));
+            hydromecenter.AddWeather(new TemperatureInfo(new DateTime(2023, 08, 17), 27));
+            hydromecenter.AddWeather(new TemperatureInfo(new DateTime(2023, 08, 18), 29));
+            hydromecenter.AddWeather(new TemperatureInfo(new DateTime(2023, 08, 19), 30));
+            hydromecenter.AddWeather(new TemperatureInfo(new DateTime(2023, 08, 20), 28));
 
 
-            hydromecenter["15.08.2023"].GetInfo();
+            hydromecenter[new DateTime(2023, 08, 15)].GetInfo();
 
             Console.WriteLine();
 
-            TemperatureInfo[] tempPeriod = hydromecenter["16.08.2023", "19.08.2023"];
+            TemperatureInfo[] tempPeriod = hydromecenter[new DateTime(2023, 08, 16), new DateTime(2023, 08, 19)];
 
             foreach (var temp in tempPeriod)
             {

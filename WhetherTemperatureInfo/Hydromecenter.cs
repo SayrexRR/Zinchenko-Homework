@@ -33,7 +33,7 @@ namespace WhetherTemperatureInfo
             }
         }
 
-        private TemperatureInfo GetTemperatureByDate(string date)
+        private TemperatureInfo GetTemperatureByDate(DateTime date)
         {
             foreach (var temperature in temperatureArray)
             {
@@ -43,33 +43,32 @@ namespace WhetherTemperatureInfo
                 }
             }
 
-            return new TemperatureInfo("00.00.0000", 0);
+            return new TemperatureInfo(DateTime.MinValue, 0);
         }
 
-        private TemperatureInfo[] GetTemperatureByPeriod(string start, string end)
+        private TemperatureInfo[] GetTemperatureByPeriod(DateTime start, DateTime end)
         {
-            TemperatureInfo[] result = new TemperatureInfo[temperatureArray.Length]; ;
+            var days = end.Day - start.Day;
+            TemperatureInfo[] result = new TemperatureInfo[days+1];
             int i = 0;
 
             foreach (var temp in temperatureArray)
             {
-                if (string.Compare(temp.Date, start) >= 0 && string.Compare(temp.Date, end) <= 0)
+                if (temp.Date >= start && temp.Date <= end)
                 {
                     result[i++] = temp;
                 }
             }
 
-            var period = result.Where(t => t.Date != null).ToArray();
-
-            return period;
+            return result;
         }
 
-        public TemperatureInfo this[string date]
+        public TemperatureInfo this[DateTime date]
         {
             get { return GetTemperatureByDate(date); }
         }
 
-        public TemperatureInfo[] this[string start, string end]
+        public TemperatureInfo[] this[DateTime start, DateTime end]
         {
             get { return GetTemperatureByPeriod(start, end); }
         }

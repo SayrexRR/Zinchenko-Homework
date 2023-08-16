@@ -8,17 +8,17 @@ namespace WhetherTemperatureInfo
 {
     struct TemperatureInfo
     {
-        string date;
+        DateTime date;
         int temperature;
         double fTemperature;
         double kTemperature;
 
-        public string Date
+        public DateTime Date
         {
             get { return date; }
         }
 
-        public TemperatureInfo(string date, int temperature)
+        public TemperatureInfo(DateTime date, int temperature)
         {
             this.date = date;
             this.temperature = temperature;
