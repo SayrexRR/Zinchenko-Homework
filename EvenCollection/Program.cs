@@ -15,13 +15,13 @@
                 Console.WriteLine(item);
             }
 
-            //Console.WriteLine(new string('-', 50));
-            //EvenListWithYield list2 = new(array);
+            Console.WriteLine(new string('-', 50));
+            EvenListWithYield list2 = new(array);
 
-            //foreach (var item in list2)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            foreach (var item in list2)
+            {
+                Console.WriteLine(item);
+            }
 
             Console.WriteLine(new string('-', 50));
 
@@ -30,12 +30,12 @@
                 Console.WriteLine(item);
             }
 
-            //Console.WriteLine(new string('-', 50));
+            Console.WriteLine(new string('-', 50));
 
-            //foreach (var item in list2)
-            //{
-            //    Console.WriteLine(item);
-            //}
+            foreach (var item in list2)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
