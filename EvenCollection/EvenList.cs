@@ -13,9 +13,14 @@ namespace EvenCollection
 
         private int position = -1;
 
-        public object Current => Current;
+        public EvenList(int[] array)
+        {
+            this.array = array;
+        }
 
-        int IEnumerator<int>.Current => array[position];
+        object IEnumerator.Current => Current;
+
+        public int Current => array[position];
 
         IEnumerator IEnumerable.GetEnumerator()
         {
@@ -38,13 +43,6 @@ namespace EvenCollection
             position = -1;
         }
 
-        public void AddArray(int[] array)
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-                this.array[i] = array[i];
-            }
-        }
 
         public IEnumerator<int> GetEnumerator()
         {
@@ -53,7 +51,7 @@ namespace EvenCollection
 
         public void Dispose()
         {
-            
+            Reset();
         }
     }
 }
