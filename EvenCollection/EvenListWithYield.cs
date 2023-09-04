@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EvenCollection
 {
-    class EvenListWithYield : IEnumerable
+    class EvenListWithYield : IEnumerable<int>
     {
         private int[] array = new int[16];
 
@@ -16,7 +16,12 @@ namespace EvenCollection
             this.array = array;
         }
 
-        public IEnumerator GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public IEnumerator<int> GetEnumerator()
         {
             foreach (int number in array)
             {

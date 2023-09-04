@@ -7,26 +7,28 @@ using System.Threading.Tasks;
 
 namespace EvenCollection
 {
-    class EvenList : IEnumerable, IEnumerator
+    class EvenList : IEnumerable<int>, IEnumerator<int>
     {
         private int[] array = new int[16];
 
         private int position = -1;
 
-        public object Current => array[position];
+        public object Current => Current;
 
-        public IEnumerator GetEnumerator()
+        int IEnumerator<int>.Current => array[position];
+
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return this;
+            return GetEnumerator(); ;
         }
 
         public bool MoveNext()
         {
             position++;
-            while (position < array.Length && array[position] % 2 != 0)
+            do
             {
                 position++;
-            }
+            } while (position < array.Length && array[position] % 2 != 0);
 
             return position < array.Length;
         }
@@ -42,6 +44,16 @@ namespace EvenCollection
             {
                 this.array[i] = array[i];
             }
+        }
+
+        public IEnumerator<int> GetEnumerator()
+        {
+            return this;
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }
