@@ -25,7 +25,7 @@ namespace EvenCollection
         {
             foreach (int number in array)
             {
-                if (number % 2 == 0)
+                if (number % 2 == 0 && number != 0)
                 {
                     yield return number;
                 }
