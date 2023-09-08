@@ -14,12 +14,12 @@ namespace Recruitment
 
             if (candidate.Age <= 18)
             {
-                throw new TooYoungException(candidate.Age);
+                throw new TooYoungException($"{candidate.Name}, Вам менше 18 років" ,candidate.Age);
             }
 
-            string message = EmploeeDepartment.isApprove(candidate)
-                ? $"Вітаю, Вас прийнято на работу.\nВаша зарплатня становить {EmploeeDepartment.Salary(candidate):C}" 
-                : "Вибачте, але Ви нам не підходите";
+            string message = EmploeeDepartment.isApproved(candidate)
+                ? $"Вітаю {candidate.Name}, Вас прийнято на работу.\nВаша зарплатня становить {EmploeeDepartment.Salary(candidate):C}" 
+                : $"Вибачте {candidate.Name}, але Ви нам не підходите";
 
             Console.WriteLine(message);
         }
@@ -29,7 +29,7 @@ namespace Recruitment
     {
         public int Age { get; private set; }
 
-        public TooYoungException(int age)
+        public TooYoungException(string message, int age) : base(message)
         {
             Age = age;
         }
