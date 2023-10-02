@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace CubeGame
 {
-    public class GameLoader
+    public static class GameLoader
     {
         private const string SaveFilePath = "square_posotion.xml";
         private static XmlSerializer serializer = new XmlSerializer(typeof(Point));
