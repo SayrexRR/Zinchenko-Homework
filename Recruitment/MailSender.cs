@@ -17,7 +17,7 @@ namespace Recruitment
                 throw new TooYoungException($"{candidate.Name}, Вам менше 18 років" ,candidate.Age);
             }
 
-            string message = EmploeeDepartment.isApproved(candidate)
+            string message = EmploeeDepartment.IsApproved(candidate)
                 ? $"Вітаю {candidate.Name}, Вас прийнято на работу.\nВаша зарплатня становить {EmploeeDepartment.Salary(candidate):C}" 
                 : $"Вибачте {candidate.Name}, але Ви нам не підходите";
 

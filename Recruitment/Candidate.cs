@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Recruitment
 {
-    class Candidate : IComparable
+    class Candidate : IComparable<Candidate>
     {
         public string Name { get; }
         public double Expiriance { get; set; }
@@ -26,50 +26,20 @@ namespace Recruitment
             DateOfBirth = dateOfBirth;
         }
 
-        public int CompareTo(object? obj)
+
+        public int CompareTo(Candidate? other)
         {
-            if (obj == null)
-                return 1;
+            if (other == null) return 1;
 
-            Candidate otherCandidate = obj as Candidate;
+            double thisExpirience = Expiriance;
+            double otherExpirience = other.Expiriance;
 
-            if (otherCandidate == null)
-                throw new ArgumentException("Об'єкт не є кандидатом");
+            if (thisExpirience < otherExpirience) return 1;
+            if (thisExpirience == otherExpirience) return 0;
 
-            int thisExpirience = (int)Expiriance;
-            int otherExpirience = (int)otherCandidate.Expiriance;
+            if (thisExpirience > otherExpirience) return -1;
 
-            return thisExpirience.CompareTo(otherExpirience);
-        }
-
-        public override bool Equals(object? obj)
-        {
-            if (obj == null || GetType() != obj.GetType()) 
-                return false;
-
-            Candidate otherCandidate = (Candidate)obj;
-            return (int)Expiriance == (int)otherCandidate.Expiriance;
-        }
-
-        public override int GetHashCode()
-        {
-            return ((int)Expiriance).GetHashCode();
-        }
-
-        public static bool operator ==(Candidate c1, Candidate c2)
-        {
-            if (c1.Expiriance == c2.Expiriance)
-                return true;
-
-            if (c1 is null || c2 is null)
-                return false;
-
-            return c1.Equals(c2);
-        }
-
-        public static bool operator !=(Candidate c1, Candidate c2)
-        {
-            return !(c1.Expiriance == c2.Expiriance);
+            return 0;
         }
     }
 }
