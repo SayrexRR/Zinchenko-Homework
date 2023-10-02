@@ -12,7 +12,7 @@ namespace CubeGame
     public static class GameLoader
     {
         private const string SaveFilePath = "square_posotion.xml";
-        private static XmlSerializer serializer = new XmlSerializer(typeof(Point));
+        private readonly static XmlSerializer serializer = new XmlSerializer(typeof(Point));
 
         public static void LoadSquarePosition()
         {
@@ -26,7 +26,7 @@ namespace CubeGame
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    throw ex;
                 }
             }
             else
@@ -45,7 +45,7 @@ namespace CubeGame
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
         }
     }

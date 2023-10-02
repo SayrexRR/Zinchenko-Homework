@@ -54,7 +54,14 @@ namespace CubeGame
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            GameLoader.SaveSquarePosition();
+            try
+            {
+                GameLoader.SaveSquarePosition();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void UpdateSquarePosition()
@@ -65,7 +72,14 @@ namespace CubeGame
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            GameLoader.LoadSquarePosition();
+            try
+            {
+                GameLoader.LoadSquarePosition();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             UpdateSquarePosition();
         }
     }
