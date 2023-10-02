@@ -22,14 +22,11 @@ namespace CubeGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string SaveFilePath = "square_posotion.xml";
-        private SquarePosition squarePosition;
+        public static Point position;
 
         public MainWindow()
         {
             InitializeComponent();
-            LoadSquarePosition();
-            UpdateSquarePosition();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -39,16 +36,16 @@ namespace CubeGame
             switch (e.Key)
             {
                 case Key.Up:
-                    squarePosition.Top -= (squarePosition.Top > 0) ? Step : 0;
+                    position.Y -= (position.Y > 0) ? Step : 0;
                     break;
                 case Key.Down:
-                    squarePosition.Top += (squarePosition.Top < Height - square.Height) ? Step : 0;
+                    position.Y += (position.Y < Height - square.Height) ? Step : 0;
                     break;
                 case Key.Left:
-                    squarePosition.Left -= (squarePosition.Left > 0) ? Step : 0;
+                    position.X -= (position.X > 0) ? Step : 0;
                     break;
                 case Key.Right:
-                    squarePosition.Left += (squarePosition.Left < Width - square.Width) ? Step : 0;
+                    position.X += (position.X < Width - square.Width) ? Step : 0;
                     break;
             }
 
@@ -57,50 +54,19 @@ namespace CubeGame
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            SaveSquarePosition();
-        }
-
-        private void LoadSquarePosition()
-        {
-            if (File.Exists(SaveFilePath))
-            {
-                try
-                {
-                    FileStream file = new FileStream(SaveFilePath, FileMode.Open);
-                    XmlSerializer serializer = new XmlSerializer(typeof(SquarePosition));
-                    squarePosition = serializer.Deserialize(file) as SquarePosition;
-                    file.Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            else
-            {
-                squarePosition = new SquarePosition();
-            }
-        }
-
-        private void SaveSquarePosition()
-        {
-            try
-            {
-                FileStream file = new FileStream(SaveFilePath, FileMode.Create);
-                XmlSerializer serializer = new XmlSerializer(typeof(SquarePosition));
-                serializer.Serialize(file, squarePosition);
-                file.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            GameLoader.SaveSquarePosition();
         }
 
         private void UpdateSquarePosition()
         {
-            Canvas.SetLeft(square, squarePosition.Left);
-            Canvas.SetTop(square, squarePosition.Top);
+            Canvas.SetLeft(square, position.X);
+            Canvas.SetTop(square, position.Y);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            GameLoader.LoadSquarePosition();
+            UpdateSquarePosition();
         }
     }
 }

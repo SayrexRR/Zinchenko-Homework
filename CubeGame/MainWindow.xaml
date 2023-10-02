@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CubeGame"
         mc:Ignorable="d"
-        Title="Cube Game" Height="450" Width="800" KeyDown="Window_KeyDown" Closing="Window_Closing">
+        Title="Cube Game" Height="450" Width="800" KeyDown="Window_KeyDown" Closing="Window_Closing" Loaded="Window_Loaded">
     <Canvas>
         <Rectangle x:Name="square" Fill="Blue" Width="50" Height="50" Canvas.Left="50" Canvas.Top="50"/>
     </Canvas>
