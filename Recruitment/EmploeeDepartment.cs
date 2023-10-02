@@ -8,7 +8,7 @@ namespace Recruitment
 {
     class EmploeeDepartment
     {
-        public static bool isApproved(Candidate candidate)
+        public static bool IsApproved(Candidate candidate)
         {
             if (candidate.Expiriance >= 2) 
                 return true;
@@ -35,6 +35,22 @@ namespace Recruitment
             }
 
             return c2;
+        }
+
+        public static SortedDictionary<Candidate, bool> GetCandidates(int quote, IEnumerable<Candidate> candidates)
+        {
+            SortedDictionary<Candidate, bool> tryCandidates = new SortedDictionary<Candidate, bool>(new ExperienceComparer());
+            Candidate candidate = null;
+
+            foreach (Candidate item in candidates)
+            {
+                candidate = item;
+                tryCandidates.Add(candidate, IsApproved(candidate));
+            }
+
+
+
+            return tryCandidates;
         }
     }
 }

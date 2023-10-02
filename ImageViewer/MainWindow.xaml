@@ -1,0 +1,15 @@
+﻿<Window x:Class="ImageViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ImageViewer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="700">
+    <Grid>
+        <Image x:Name="imageView" Height="350" Width="690" Margin="5,5,5,0" VerticalAlignment="Top"/>
+        <Button Content="&lt; Prev" HorizontalAlignment="Left" Margin="80,0,0,10" Width="109" FontSize="20" Height="40" VerticalAlignment="Bottom"/>
+        <Button Content="Next &gt;" Margin="0,0,80,10" FontSize="20" HorizontalAlignment="Right" Width="109" HorizontalContentAlignment="Center" Height="40" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Window>
