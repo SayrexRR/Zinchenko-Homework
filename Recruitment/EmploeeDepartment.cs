@@ -37,18 +37,16 @@ namespace Recruitment
             return c2;
         }
 
-        public static SortedDictionary<Candidate, bool> GetCandidates(int quote, IEnumerable<Candidate> candidates)
+        public static SortedDictionary<Candidate, bool> GetCandidates(IEnumerable<Candidate> candidates)
         {
             SortedDictionary<Candidate, bool> tryCandidates = new SortedDictionary<Candidate, bool>(new ExperienceComparer());
-            Candidate candidate = null;
+            Candidate candidate;
 
             foreach (Candidate item in candidates)
             {
                 candidate = item;
                 tryCandidates.Add(candidate, IsApproved(candidate));
             }
-
-
 
             return tryCandidates;
         }
