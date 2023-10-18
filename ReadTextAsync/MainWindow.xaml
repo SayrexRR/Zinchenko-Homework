@@ -7,12 +7,11 @@
         mc:Ignorable="d"
         Title="File Reader" Height="350" Width="525">
     <Grid>
-        <TextBox x:Name="textBox" VerticalScrollBarVisibility="Auto"
-                 HorizontalScrollBarVisibility="Auto"
+        <TextBox x:Name="textBox" VerticalScrollBarVisibility="Visible"
                  TextWrapping="Wrap" AcceptsReturn="True" Margin="10,10,10,40"/>
         <Button Content="Cancel" HorizontalAlignment="Right"
-                VerticalAlignment="Bottom" Margin="10" Click="CancelButton_Click"/>
+                VerticalAlignment="Bottom" Margin="10,10,200,10" Click="CancelButton_Click"/>
         <Button Content="Read" HorizontalAlignment="Left"
-        VerticalAlignment="Bottom" Margin="10" Click="ReadButton_Click"/>
+                VerticalAlignment="Bottom" Margin="201,10,10,10" Click="ReadButton_Click"/>
     </Grid>
 </Window>

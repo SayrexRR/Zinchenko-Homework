@@ -22,36 +22,36 @@ namespace ReadTextAsync
     /// </summary>
     public partial class MainWindow : Window
     {
-        private CancellationTokenSource CancellationTokenSource;
+        private readonly CancellationTokenSource cancellationTokenSource;
         private const string FilePath = "largefile.txt";
+        private string cancelMessage = "Читання файлу було скасовано";
 
         public MainWindow()
         {
             InitializeComponent();
+            cancellationTokenSource = new CancellationTokenSource();
         }
 
         private async void ReadButton_Click(object sender, RoutedEventArgs e)
         {
-            CancellationTokenSource = new CancellationTokenSource();
-
             try
             {
-                string text = await File.ReadAllTextAsync(FilePath, CancellationTokenSource.Token);
+                string text = await File.ReadAllTextAsync(FilePath, cancellationTokenSource.Token);
                 textBox.Text = text;
             }
             catch (OperationCanceledException)
             {
-                textBox.Text = "Читання файлу було скасовано";
+                MessageBox.Show(cancelMessage);
             }
             catch (Exception ex)
             {
-                textBox.Text = ex.Message;
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-            CancellationTokenSource?.Cancel();
+            cancellationTokenSource?.Cancel();
         }
     }
 }
