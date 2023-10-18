@@ -18,15 +18,12 @@ namespace QuadraticTask
 
             foreach (var equation in equations)
             {
-                Task<(double, double)> task1 = Task.Run(() =>
-                {
-                    return QuadraticEquationSolver.CalculateStandart(equation);
-                });
+                Task<(double, double)> task1 = new Task<(double, double)>(() => QuadraticEquationSolver.CalculateStandart(equation));
 
-                Task<(double, double)> task2 = Task.Run(() =>
-                {
-                    return QuadraticEquationSolver.CalculateVietas(equation);
-                });
+                Task<(double, double)> task2 = new Task<(double, double)>(() => QuadraticEquationSolver.CalculateVietas(equation));
+
+                task1.Start();
+                task2.Start();
 
                 Task<(double, double)> completedTask = Task.WhenAny(task1, task2).Result;
 
