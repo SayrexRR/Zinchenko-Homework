@@ -11,7 +11,7 @@
                  TextWrapping="Wrap" AcceptsReturn="True" Margin="10,10,10,40"/>
         <Button Content="Cancel" HorizontalAlignment="Right"
                 VerticalAlignment="Bottom" Margin="10,10,200,10" Click="CancelButton_Click"/>
-        <Button Content="Read" HorizontalAlignment="Left"
+        <Button Content="Open file" HorizontalAlignment="Left"
                 VerticalAlignment="Bottom" Margin="201,10,10,10" Click="ReadButton_Click"/>
     </Grid>
 </Window>

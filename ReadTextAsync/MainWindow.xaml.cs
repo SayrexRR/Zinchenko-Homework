@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,36 +23,63 @@ namespace ReadTextAsync
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly CancellationTokenSource cancellationTokenSource;
-        private const string FilePath = "largefile.txt";
+        private const int BufferSize = 1024;
+
+        private CancellationTokenSource cancellationTokenSource;
         private string cancelMessage = "Читання файлу було скасовано";
+        private bool isCanceled;
 
         public MainWindow()
         {
             InitializeComponent();
             cancellationTokenSource = new CancellationTokenSource();
+            isCanceled = false;
         }
 
         private async void ReadButton_Click(object sender, RoutedEventArgs e)
         {
-            try
+            var dialog = new OpenFileDialog();
+
+            if (dialog.ShowDialog() == true)
             {
-                string text = await File.ReadAllTextAsync(FilePath, cancellationTokenSource.Token);
-                textBox.Text = text;
-            }
-            catch (OperationCanceledException)
-            {
-                MessageBox.Show(cancelMessage);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                textBox.Clear();
+
+                try
+                {
+                    using (var reader = new StreamReader(dialog.FileName))
+                    {
+                        char[] buffer = new char[BufferSize];
+                        int charsRead;
+
+                        while ((charsRead = await reader.ReadAsync(buffer, cancellationTokenSource.Token)) > 0 && !isCanceled)
+                        {
+                            string text = new string(buffer);
+                            textBox.AppendText(text);
+                            await Task.Delay(500);
+                        }
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    MessageBox.Show(cancelMessage);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    isCanceled = false;
+                }
             }
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             cancellationTokenSource?.Cancel();
+            cancellationTokenSource?.Dispose();
+            isCanceled = true;
+            cancellationTokenSource = new CancellationTokenSource();
         }
     }
 }
