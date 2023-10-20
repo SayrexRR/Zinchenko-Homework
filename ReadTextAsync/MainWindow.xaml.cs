@@ -51,9 +51,9 @@ namespace ReadTextAsync
                         char[] buffer = new char[BufferSize];
                         int charsRead;
 
-                        while ((charsRead = await reader.ReadAsync(buffer, 0, buffer.Length)) > 0 && !isCanceled)
+                        while ((charsRead = await reader.ReadAsync(buffer, cancellationTokenSource.Token)) > 0 && !isCanceled)
                         {
-                            string text = new string(buffer, 0, charsRead);
+                            string text = new string(buffer);
                             textBox.AppendText(text);
                             await Task.Delay(500);
                         }
