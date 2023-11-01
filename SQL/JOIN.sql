@@ -47,7 +47,6 @@ SELECT
 	COUNT(ed.DepartmentId) AS [Department Qty]
 FROM Employees AS e
 JOIN EmploeeDepartment AS ed ON (e.Id = ed.EmployeeId)
-JOIN Departments AS d ON (d.Id = ed.DepartmentId)
 GROUP BY e.FirstName
 GO
 
@@ -55,18 +54,17 @@ GO
 SELECT
 	d.Name AS [Department],
 	COUNT(ed.EmployeeId) AS [Emploee Qty]
-FROM Employees AS e
-RIGHT JOIN EmploeeDepartment AS ed ON (e.Id = ed.EmployeeId)
-RIGHT JOIN Departments AS d ON (d.Id = ed.DepartmentId)
+FROM Departments AS d
+RIGHT JOIN EmploeeDepartment AS ed ON (d.Id = ed.DepartmentId)
 GROUP BY d.Name
 GO
 
 
 SELECT
 	d.Name AS [Department],
-	e.FirstName + ' ' + e.LastName AS [Emploee]
+	ISNULL(e.LastName + ' ' + e.FirstName, 'Empty') AS [Employee Name]
 FROM Departments AS d
 LEFT JOIN EmploeeDepartment AS ed ON (d.Id = ed.DepartmentId)
 LEFT JOIN Employees AS e ON (e.Id = ed.EmployeeId)
-ORDER BY d.Id
+ORDER BY [Employee Name]
 GO
