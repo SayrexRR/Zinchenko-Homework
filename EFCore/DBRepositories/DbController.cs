@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EFCore.Controllers
+namespace EFCore.DBRepositories
 {
-    public class DbController
+    public class DBRepository
     {
-        public static string GetProductSales(string productName, int month)
+        public static (double, double) GetProductSales(string productName, int month)
         {
             using (var context = new TestContext())
             {
@@ -22,7 +22,7 @@ namespace EFCore.Controllers
                 var totalQty = productSales.Sum(p => p.Qty);
                 var totalSum = productSales.Sum(p => p.Total);
 
-                return $"Product: {productName}, quontity: {totalQty}, total price: {totalSum:C}";
+                return (totalQty, (double)totalSum);
             }
         }
     }

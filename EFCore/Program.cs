@@ -1,4 +1,4 @@
-﻿using EFCore.Controllers;
+﻿using EFCore.DBRepositories;
 
 namespace EFCore
 {
@@ -6,9 +6,12 @@ namespace EFCore
     {
         static void Main(string[] args)
         {
-            var salesInfo = DbController.GetProductSales("Phone", 10);
+            string productName = "Phone";
+            int month = 10;
 
-            Console.WriteLine(salesInfo);
+            var salesInfo = DBRepository.GetProductSales(productName, month);
+
+            Console.WriteLine($"Product: {productName}, quontity: {salesInfo.Item1}, total price: {salesInfo.Item2:C}");
         }
     }
 }
