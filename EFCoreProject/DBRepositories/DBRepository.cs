@@ -20,9 +20,9 @@ namespace EFCoreProject.DBRepositories
                                    select new { Qty = orderPosition.Qty, Total = orderPosition.Qty * product.Price };
 
                 var totalQty = productSales.Sum(p => p.Qty);
-                var totalSum = productSales.Sum(p => p.Total);
+                var totalSum = (double)productSales.Sum(p => p.Total);
 
-                return (totalQty, (double)totalSum);
+                return (totalQty, totalSum);
             }
         }
     }
