@@ -36,8 +36,8 @@ namespace CodeFirstTest
             var books = new List<Book>()
             {
                 new Book() { Name = "Pride and Prejudice", Author = "Jane Austen", Genres = new List<Genre>{genre6}, Price = 850 },
-                new Book() { Name = "A Game of Thrones", Author = "George R.R. Martin", Genres = new List<Genre>{genre10}, Price = 1700 },
-                new Book() { Name = "Harry Potter and the Philosopher's Stone", Author = "J.K. Rowling", Genres = new List<Genre>{genre10}, Price = 1500 },
+                new Book() { Name = "A Game of Thrones", Author = "George R.R. Martin", Genres = new List<Genre>{genre10, genre4}, Price = 1700 },
+                new Book() { Name = "Harry Potter and the Philosopher's Stone", Author = "J.K. Rowling", Genres = new List<Genre>{genre10, genre2}, Price = 1500 },
                 new Book() { Name = "Sherlock Holmes", Author = "Arthur Conan Doyle", Genres = new List<Genre>{genre11}, Price = 350 },
                 new Book() { Name = "Ender's Game", Author = "Orson Scott Card", Genres = new List<Genre>{genre3}, Price = 900 },
                 new Book() { Name = "Things Fall Apart", Author = "Chinua Achebe", Genres = new List<Genre>{genre6}, Price = 400 },
