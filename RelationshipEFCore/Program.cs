@@ -56,13 +56,6 @@ namespace RelationshipEFCore
                 context.SaveChanges();
             }
             #endregion
-
-            var m = Repository.GetManadgers(15000);
-
-            foreach (var manager in m)
-            {
-                Console.WriteLine($"{manager.FirstName} {manager.FirstName} {manager.Salary} {manager.Department.Name}");
-            }
         }
     }
 }
