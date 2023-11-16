@@ -8,6 +8,8 @@ namespace RelationshipEFCore.Models
 {
     public class Employee : Person
     {
-        public decimal Salary;
+        public decimal Salary { get; set; }
+
+        public virtual Department Department { get; set; }
     }
 }

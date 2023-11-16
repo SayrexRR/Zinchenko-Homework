@@ -8,6 +8,7 @@ namespace RelationshipEFCore.Models
 {
     public class Manager : Employee
     {
-        public virtual Department Department { get; set; }
+        public decimal? Bonus { get; set; }
+        public bool? IsDepartmentHead { get; set; }
     }
 }

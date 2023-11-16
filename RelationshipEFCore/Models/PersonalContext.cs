@@ -28,9 +28,9 @@ namespace RelationshipEFCore.Models
         {
             modelBuilder.Entity<Person>().UseTptMappingStrategy();
 
-            modelBuilder.Entity<Manager>()
+            modelBuilder.Entity<Employee>()
                 .HasOne(m => m.Department)
-                .WithMany(d => d.Managers)
+                .WithMany(d => d.Employees)
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }
