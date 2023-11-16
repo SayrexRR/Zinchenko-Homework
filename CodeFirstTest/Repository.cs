@@ -10,25 +10,34 @@ namespace CodeFirstTest
 {
     public class Repository
     {
-        public static decimal? GetBookPrice(int id)
+        public static Book? GetBook(int id)
         {
             using var context = new BookStoreContext();
 
-            var res = context.Books.First(b => b.Id == id);
+            var book = context.Books.FirstOrDefault(b => b.Id == id);
 
-            return res.Price;
+            return book;
         }
 
-        public static decimal? GetBookPrice(string name)
+        public static Book? GetBook(string name)
         {
             using var context = new BookStoreContext();
 
-            var res = context.Books.First(b => b.Name == name);
+            var book = context.Books.FirstOrDefault(b => b.Name == name);
 
-            return res.Price;
+            return book;
         }
 
-        public static (double?, decimal?) GetProductSales(int id, int month)
+        public static string GetBookNameById(int id)
+        {
+            using var context = new BookStoreContext();
+
+            var name = context.Books.SingleOrDefault(b => b.Id == id).Name;
+
+            return name;
+        }
+
+        public static (int?, decimal?) GetProductSales(int id, int month)
         {
             using var context = new BookStoreContext();
 
@@ -44,7 +53,7 @@ namespace CodeFirstTest
             return (totalQty, totalSum);
         }
 
-        public static (double?, decimal?) GetProductSales(string name, int month)
+        public static (int?, decimal?) GetProductSales(string name, int month)
         {
             using var context = new BookStoreContext();
 
