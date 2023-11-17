@@ -20,7 +20,7 @@ namespace RelationshipEFCore.BussinessLayer
                 LastName = e.LastName,
                 DateOfBirth = e.DateOfBirth,
                 Salary = e.Salary,
-                Department = new Department() { Name = e?.Department.Name }
+                Department = new Department() { Name = e?.Department?.Name }
             }).ToList();
         }
 
@@ -34,7 +34,7 @@ namespace RelationshipEFCore.BussinessLayer
                 LastName = employee.LastName,
                 DateOfBirth = employee.DateOfBirth,
                 Salary = employee.Salary,
-                Department = new Department() { Name = employee?.Department.Name }
+                Department = new Department() { Name = employee?.Department?.Name }
             };
         }
 
