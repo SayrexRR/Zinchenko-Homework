@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RelationshipEFCore.BussinessLayer.Models
+namespace RelationshipEFCore.DataLayer.Entities
 {
     public class Employee : Person
     {
         public decimal Salary { get; set; }
 
-        public Department Department { get; set; }
+        public virtual Department Department { get; set; }
     }
 }

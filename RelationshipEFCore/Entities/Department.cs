@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RelationshipEFCore.BussinessLayer.Models
+namespace RelationshipEFCore.DataLayer.Entities
 {
     public class Department
     {
+        public int Id { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

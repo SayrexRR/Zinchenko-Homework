@@ -1,11 +1,11 @@
-﻿using RelationshipEFCore.Models;
+﻿using RelationshipEFCore.DataLayer.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RelationshipEFCore
+namespace RelationshipEFCore.DataLayer
 {
     public static class Repository
     {
