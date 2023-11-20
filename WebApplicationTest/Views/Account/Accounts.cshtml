@@ -1,0 +1,32 @@
+﻿@using WebApplicationTest.BussinessLayer.Models
+@model IEnumerable<Account>
+
+<h1>Contacts</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Account contact in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => contact.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => contact.Password)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
