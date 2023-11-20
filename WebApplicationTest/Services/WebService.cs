@@ -1,13 +1,13 @@
 ﻿using WebApplicationTest.BussinessLayer.Models;
-using WebApplicationTest.DataLayer;
+using WebApplicationTest.DataLayer.Repository;
 
-namespace WebApplicationTest.BussinessLayer
+namespace WebApplicationTest.BussinessLayer.Services
 {
     public class WebService
     {
         public List<Account> GetAccounts()
         {
-            var accounts = Repository.GetAccounts();
+            var accounts = AccountRepository.GetAccounts();
 
             return accounts.Select(a => new Account
             {
@@ -19,7 +19,7 @@ namespace WebApplicationTest.BussinessLayer
 
         public Account GetFirstAccount()
         {
-            var account = Repository.GetAccounts().FirstOrDefault();
+            var account = AccountRepository.GetFirstAccount();
 
             return new Account
             {
@@ -31,7 +31,7 @@ namespace WebApplicationTest.BussinessLayer
 
         public List<Contact> GetContacts()
         {
-            var contacts = Repository.GetContacts();
+            var contacts = ContactRepository.GetContacts();
 
             return contacts.Select(a => new Contact
             {
@@ -44,7 +44,7 @@ namespace WebApplicationTest.BussinessLayer
 
         public Contact GetFirstContact()
         {
-            var contact = Repository.GetContacts().FirstOrDefault();
+            var contact = ContactRepository.GetFirstContact();
 
             return new Contact
             {
