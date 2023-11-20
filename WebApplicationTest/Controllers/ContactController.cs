@@ -6,11 +6,11 @@ namespace WebApplicationTest.Controllers
 {
     public class ContactController : Controller
     {
-        private readonly WebService webService;
+        private readonly ContactService contactService;
 
         public ContactController()
         {
-            webService = new WebService();
+            contactService = new ContactService();
         }
 
         public IActionResult Index()
@@ -21,7 +21,7 @@ namespace WebApplicationTest.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Contact>> Contacts()
         {
-            var contacts = webService.GetContacts();
+            var contacts = contactService.GetContacts();
 
             if (contacts == null)
             {
@@ -34,7 +34,7 @@ namespace WebApplicationTest.Controllers
         [HttpGet]
         public ActionResult<Contact> FirstContact()
         {
-            var contact = webService.GetFirstContact();
+            var contact = contactService.GetFirstContact();
 
             if (contact == null)
             {

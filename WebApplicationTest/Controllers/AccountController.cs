@@ -6,11 +6,11 @@ namespace WebApplicationTest.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly WebService webService;
+        private readonly AccountService accountService;
 
         public AccountController()
         {
-            webService = new WebService();
+            accountService = new AccountService();
         }
 
         public IActionResult Index()
@@ -21,7 +21,7 @@ namespace WebApplicationTest.Controllers
         [HttpGet]
         public ActionResult<List<Account>> Accounts()
         {
-            var accounts = webService.GetAccounts();
+            var accounts = accountService.GetAccounts();
 
             if (accounts == null)
             {
@@ -34,7 +34,7 @@ namespace WebApplicationTest.Controllers
         [HttpGet]
         public ActionResult<Account> FirstAccount()
         {
-            var account = webService.GetFirstAccount();
+            var account = accountService.GetFirstAccount();
 
             if (account == null)
             {
