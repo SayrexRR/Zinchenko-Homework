@@ -10,6 +10,7 @@ namespace ProductsStoringState.Controllers
         private readonly IMemoryCache memoryCache;
         private const int pageSize = 5;
         private const string cacheKey = "product_list";
+        private const string pageKey = "page";
 
         public ProductController(IProductService productService, IMemoryCache memoryCache)
         {
@@ -35,7 +36,7 @@ namespace ProductsStoringState.Controllers
 
         public IActionResult GetProducts()
         {
-            string pageStr = Request.Query["page"];
+            string pageStr = Request.Query[pageKey];
 
             if (int.TryParse(pageStr, out var page))
             {
