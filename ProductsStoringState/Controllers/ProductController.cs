@@ -33,11 +33,18 @@ namespace ProductsStoringState.Controllers
             return View(result);
         }
 
-        public IActionResult GetProducts(int page)
+        public IActionResult GetProducts()
         {
-            var products = productService.GetProducts(page, pageSize);
+            string pageStr = Request.Query["page"];
 
-            return View(products);
+            if (int.TryParse(pageStr, out var page))
+            {
+                var products = productService.GetProducts(page, pageSize);
+
+                return View(products);
+            }
+
+            return View();
         }
     }
 }

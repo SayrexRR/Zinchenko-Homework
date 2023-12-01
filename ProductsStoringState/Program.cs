@@ -31,10 +31,6 @@ namespace ProductsStoringState
             app.UseAuthorization();
 
             app.MapControllerRoute(
-                name: "products",
-                pattern: "{controller}/{action=GetProducts}/{page=1}");
-
-            app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Product}/{action=Index}/{id?}");
 
