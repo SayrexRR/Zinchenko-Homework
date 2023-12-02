@@ -5,11 +5,11 @@ namespace ProductsStoringState.BusinessLayer.Service
 {
     public class ProductService : IProductService
     {
-        private readonly ProductRepository repository;
+        private readonly IProductRepository repository;
 
-        public ProductService()
+        public ProductService(IProductRepository productRepository)
         {
-            repository = new ProductRepository();
+            this.repository = productRepository;
         }
 
         public List<ProductModel> GetAllProducts()

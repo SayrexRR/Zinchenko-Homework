@@ -1,24 +1,23 @@
 ﻿using ProductsStoringState.DataLayer.Entities;
+using ProductsStoringState.Repository;
 
 namespace ProductsStoringState.DataLayer.Repository
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
-        private readonly ProductsContext context;
-
-        public ProductRepository()
+        public ProductRepository(ProductsContext context)
+            :base(context)
         {
-            context = new ProductsContext();
-        }
+        }       
 
         public List<Product> GetAllProducts()
         {
-            return context.Products.ToList();
+            return productsContext.Products.ToList();
         }
 
         public List<Product> GetProducts(int page, int pageSize)
         {
-            return context.Products
+            return productsContext.Products
                 .OrderBy(p => p.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)

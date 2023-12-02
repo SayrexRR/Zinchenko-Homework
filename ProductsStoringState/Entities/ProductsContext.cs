@@ -1,21 +1,18 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using ProductsStoringState.DataLayer.Entities;
 
 namespace ProductsStoringState.DataLayer
 {
     public class ProductsContext : DbContext
     {
-        public ProductsContext()
+        public ProductsContext(DbContextOptions options) 
+            :base(options)
         {
             Database.EnsureCreated();
         }
 
-        public DbSet<Product> Products { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=ProductsDb;Trusted_Connection=True;TrustServerCertificate=true");
-        }
+        public DbSet<Product> Products { get; set; }     
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
