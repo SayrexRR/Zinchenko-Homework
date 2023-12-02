@@ -1,4 +1,5 @@
 using ProductsStoringState.BusinessLayer.Service;
+using ProductsStoringState.DataLayer.Repository;
 
 namespace ProductsStoringState
 {
@@ -12,6 +13,7 @@ namespace ProductsStoringState
             builder.Services.AddControllersWithViews();
             builder.Services.AddMemoryCache();
             builder.Services.AddScoped<IProductService, ProductService>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
             var app = builder.Build();
 

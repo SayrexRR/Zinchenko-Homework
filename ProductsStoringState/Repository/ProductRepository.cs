@@ -2,7 +2,7 @@
 
 namespace ProductsStoringState.DataLayer.Repository
 {
-    public class ProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly ProductsContext context;
 
