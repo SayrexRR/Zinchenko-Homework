@@ -5,17 +5,12 @@ namespace ProductsStoringState.DataLayer
 {
     public class ProductsContext : DbContext
     {
-        public ProductsContext()
+        public ProductsContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();
         }
 
         public DbSet<Product> Products { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=ProductsDb;Trusted_Connection=True;TrustServerCertificate=true");
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

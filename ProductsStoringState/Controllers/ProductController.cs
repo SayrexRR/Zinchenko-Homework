@@ -45,7 +45,7 @@ namespace ProductsStoringState.Controllers
                 return View(products);
             }
 
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

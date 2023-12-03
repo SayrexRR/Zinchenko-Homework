@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using ProductsStoringState.BusinessLayer.Service;
+using ProductsStoringState.DataLayer;
 using ProductsStoringState.DataLayer.Repository;
 
 namespace ProductsStoringState
@@ -12,6 +14,8 @@ namespace ProductsStoringState
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             builder.Services.AddMemoryCache();
+            string connectionString = builder.Configuration.GetConnectionString("ProductConnection");
+            builder.Services.AddDbContext<ProductsContext>(options => options.UseSqlServer(connectionString));
             builder.Services.AddScoped<IProductService, ProductService>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
 

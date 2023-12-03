@@ -6,9 +6,9 @@ namespace ProductsStoringState.DataLayer.Repository
     {
         private readonly ProductsContext context;
 
-        public ProductRepository()
+        public ProductRepository(ProductsContext context)
         {
-            context = new ProductsContext();
+            this.context = context;
         }
 
         public List<Product> GetAllProducts()
