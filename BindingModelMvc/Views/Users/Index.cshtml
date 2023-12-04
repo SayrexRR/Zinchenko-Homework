@@ -1,0 +1,49 @@
+﻿@using BindingModelMvc.BusinessLayer.Models
+@model IEnumerable<UserModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Users</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(u => u.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(u => u.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(u => u.Password)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(u => user.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(u => user.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(u => user.Password)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.UserId">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@user.UserId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
